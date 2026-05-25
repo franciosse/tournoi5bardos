@@ -1,5 +1,18 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { type Match } from "@prisma/client";
+
+type TeamStat = {
+  id: number;
+  name: string;
+  played: number;
+  won: number;
+  drawn: number;
+  lost: number;
+  points: number;
+  scored: number;
+  conceded: number;
+};
 
 export async function GET() {
   try {
@@ -12,22 +25,9 @@ export async function GET() {
       where: { status: "played" },
     });
 
-    const stats: Record<
-      number,
-      {
-        id: number;
-        name: string;
-        played: number;
-        won: number;
-        drawn: number;
-        lost: number;
-        points: number;
-        scored: number;
-        conceded: number;
-      }
-    > = {};
+    const stats: Record<number, TeamStat> = {};
 
-    teams.forEach((t) => {
+    teams.forEach((t: { id: number; name: string }) => {
       stats[t.id] = {
         id: t.id,
         name: t.name,
@@ -41,7 +41,7 @@ export async function GET() {
       };
     });
 
-    playedMatches.forEach((m) => {
+    playedMatches.forEach((m: Match) => {
       const s1 = m.score1 ?? 0;
       const s2 = m.score2 ?? 0;
       const t1 = stats[m.team1Id];
@@ -71,7 +71,7 @@ export async function GET() {
       }
     });
 
-    const sorted = Object.values(stats).sort((a, b) => {
+    const sorted = Object.values(stats).sort((a: TeamStat, b: TeamStat) => {
       if (b.points !== a.points) return b.points - a.points;
       const diffA = a.scored - a.conceded;
       const diffB = b.scored - b.conceded;

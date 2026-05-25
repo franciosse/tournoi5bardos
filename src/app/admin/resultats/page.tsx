@@ -1,10 +1,13 @@
 import { isAdminAuthenticated } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
+import { type Team, type Match } from "@prisma/client";
 import Link from "next/link";
 import ScoreForm from "@/components/ScoreForm";
 
-async function getMatches() {
+type MatchWithTeams = Match & { team1: Team; team2: Team };
+
+async function getMatches(): Promise<MatchWithTeams[]> {
   return prisma.match.findMany({
     include: { team1: true, team2: true },
     orderBy: [{ startTime: "asc" }, { field: "asc" }],
@@ -17,10 +20,10 @@ function formatTime(d: Date) {
 
 export default async function AdminResultatsPage() {
   if (!(await isAdminAuthenticated())) redirect("/admin/login");
-  const matches = await getMatches().catch(() => []);
+  const matches = await getMatches().catch((): MatchWithTeams[] => []);
 
-  const pending = matches.filter((m) => m.status !== "played");
-  const played = matches.filter((m) => m.status === "played");
+  const pending = matches.filter((m: MatchWithTeams) => m.status !== "played");
+  const played = matches.filter((m: MatchWithTeams) => m.status === "played");
 
   return (
     <div style={{ maxWidth: 900, margin: "0 auto", padding: "2rem 1.5rem" }}>
@@ -43,14 +46,13 @@ export default async function AdminResultatsPage() {
         </div>
       ) : (
         <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
-          {/* Pending matches */}
           {pending.length > 0 && (
             <div>
               <h2 style={{ color: "#e8520a", fontFamily: "Georgia, serif", fontWeight: 700, marginBottom: "1rem" }}>
                 Matchs à saisir ({pending.length})
               </h2>
               <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
-                {pending.map((m) => (
+                {pending.map((m: MatchWithTeams) => (
                   <div key={m.id} className="card">
                     <div style={{ display: "flex", alignItems: "center", gap: "1rem", flexWrap: "wrap" }}>
                       <div style={{ minWidth: 90 }}>
@@ -69,14 +71,13 @@ export default async function AdminResultatsPage() {
             </div>
           )}
 
-          {/* Played matches */}
           {played.length > 0 && (
             <div>
               <h2 style={{ color: "#4caf50", fontFamily: "Georgia, serif", fontWeight: 700, marginBottom: "1rem" }}>
                 Matchs saisis ({played.length})
               </h2>
               <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-                {played.map((m) => (
+                {played.map((m: MatchWithTeams) => (
                   <div key={m.id} className="card" style={{ opacity: 0.8 }}>
                     <div style={{ display: "flex", alignItems: "center", gap: "1rem", flexWrap: "wrap" }}>
                       <div style={{ minWidth: 90 }}>

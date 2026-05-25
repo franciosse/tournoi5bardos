@@ -39,7 +39,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const teamIds = teams.map((t) => t.id);
+    const teamIds = teams.map((t: { id: number }) => t.id);
     const schedule = generateSchedule(teamIds, 7, 2, tournamentDate);
 
     // Clear existing matches before regenerating

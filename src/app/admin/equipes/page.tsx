@@ -1,10 +1,13 @@
 import { isAdminAuthenticated } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
+import { type Team, type Player } from "@prisma/client";
 import Link from "next/link";
 import TeamActions from "@/components/TeamActions";
 
-async function getTeams() {
+type TeamWithPlayers = Team & { players: Player[] };
+
+async function getTeams(): Promise<TeamWithPlayers[]> {
   return prisma.team.findMany({
     include: { players: true },
     orderBy: { createdAt: "asc" },
@@ -13,7 +16,7 @@ async function getTeams() {
 
 export default async function AdminEquipesPage() {
   if (!(await isAdminAuthenticated())) redirect("/admin/login");
-  const teams = await getTeams().catch(() => []);
+  const teams = await getTeams().catch((): TeamWithPlayers[] => []);
 
   return (
     <div style={{ maxWidth: 900, margin: "0 auto", padding: "2rem 1.5rem" }}>
@@ -33,7 +36,7 @@ export default async function AdminEquipesPage() {
         </div>
       ) : (
         <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-          {teams.map((team) => (
+          {teams.map((team: TeamWithPlayers) => (
             <div key={team.id} className="card">
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: "1rem" }}>
                 <div style={{ flex: 1 }}>
@@ -49,13 +52,12 @@ export default async function AdminEquipesPage() {
                     📧 {team.contactEmail} · 👤 {team.contactName}
                     {team.contactPhone && ` · 📞 ${team.contactPhone}`}
                   </p>
-                  {/* Players list */}
                   <details>
                     <summary style={{ color: "#e8520a", cursor: "pointer", fontSize: "0.85rem", fontWeight: 600 }}>
                       {team.players.length} joueur(s)
                     </summary>
                     <div style={{ marginTop: "0.5rem", display: "flex", flexWrap: "wrap", gap: "0.4rem" }}>
-                      {team.players.map((p) => (
+                      {team.players.map((p: Player) => (
                         <span
                           key={p.id}
                           style={{

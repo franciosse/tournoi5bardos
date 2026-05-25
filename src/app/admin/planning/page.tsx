@@ -1,10 +1,14 @@
 import { isAdminAuthenticated } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
+import { type Team, type Match } from "@prisma/client";
 import Link from "next/link";
 import PlanningGenerator from "@/components/PlanningGenerator";
 
-async function getData() {
+type MatchWithTeams = Match & { team1: Team; team2: Team; refTeam: Team | null };
+type PageData = { approvedCount: number; matches: MatchWithTeams[] };
+
+async function getData(): Promise<PageData> {
   const [approvedCount, matches] = await Promise.all([
     prisma.team.count({ where: { status: "approved" } }),
     prisma.match.findMany({
@@ -19,9 +23,9 @@ function formatTime(d: Date) {
   return new Date(d).toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" });
 }
 
-function groupByTime(matches: Awaited<ReturnType<typeof getData>>["matches"]) {
-  const groups: Record<string, typeof matches> = {};
-  matches.forEach((m) => {
+function groupByTime(matches: MatchWithTeams[]) {
+  const groups: Record<string, MatchWithTeams[]> = {};
+  matches.forEach((m: MatchWithTeams) => {
     const key = formatTime(m.startTime);
     if (!groups[key]) groups[key] = [];
     groups[key].push(m);
@@ -31,7 +35,9 @@ function groupByTime(matches: Awaited<ReturnType<typeof getData>>["matches"]) {
 
 export default async function AdminPlanningPage() {
   if (!(await isAdminAuthenticated())) redirect("/admin/login");
-  const { approvedCount, matches } = await getData().catch(() => ({ approvedCount: 0, matches: [] }));
+  const { approvedCount, matches } = await getData().catch(
+    (): PageData => ({ approvedCount: 0, matches: [] })
+  );
 
   const groups = groupByTime(matches);
   const slots = Object.keys(groups).sort();
@@ -65,7 +71,7 @@ export default async function AdminPlanningPage() {
                   <div style={{ flex: 1, height: 1, background: "#333" }} />
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                  {groups[time].sort((a, b) => a.field - b.field).map((m) => (
+                  {groups[time].sort((a: MatchWithTeams, b: MatchWithTeams) => a.field - b.field).map((m: MatchWithTeams) => (
                     <div key={m.id} className="card" style={{ padding: "0.75rem 1rem" }}>
                       <div style={{ fontSize: "0.75rem", color: "#555", marginBottom: "0.4rem" }}>
                         TERRAIN {m.field}

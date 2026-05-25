@@ -1,6 +1,9 @@
 import { prisma } from "@/lib/prisma";
+import { type Team, type Match } from "@prisma/client";
 
-async function getMatches() {
+type MatchWithTeams = Match & { team1: Team; team2: Team; refTeam: Team | null };
+
+async function getMatches(): Promise<MatchWithTeams[]> {
   try {
     return await prisma.match.findMany({
       include: { team1: true, team2: true, refTeam: true },
@@ -15,9 +18,9 @@ function formatTime(d: Date) {
   return new Date(d).toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" });
 }
 
-function groupByTime(matches: Awaited<ReturnType<typeof getMatches>>) {
-  const groups: Record<string, typeof matches> = {};
-  matches.forEach((m) => {
+function groupByTime(matches: MatchWithTeams[]) {
+  const groups: Record<string, MatchWithTeams[]> = {};
+  matches.forEach((m: MatchWithTeams) => {
     const key = formatTime(m.startTime);
     if (!groups[key]) groups[key] = [];
     groups[key].push(m);
@@ -54,15 +57,7 @@ export default async function ProgrammePage() {
         <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
           {slots.map((time) => (
             <div key={time}>
-              {/* Time header */}
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "1rem",
-                  marginBottom: "0.75rem",
-                }}
-              >
+              <div style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "0.75rem" }}>
                 <span
                   style={{
                     background: "#e8520a",
@@ -81,11 +76,10 @@ export default async function ProgrammePage() {
                 <div style={{ flex: 1, height: 1, background: "#333" }} />
               </div>
 
-              {/* Matches in this slot */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {groups[time]
-                  .sort((a, b) => a.field - b.field)
-                  .map((match) => (
+                  .sort((a: MatchWithTeams, b: MatchWithTeams) => a.field - b.field)
+                  .map((match: MatchWithTeams) => (
                     <div
                       key={match.id}
                       className="card"
@@ -95,7 +89,6 @@ export default async function ProgrammePage() {
                         overflow: "hidden",
                       }}
                     >
-                      {/* Field label */}
                       <div
                         style={{
                           position: "absolute",
@@ -110,7 +103,6 @@ export default async function ProgrammePage() {
                         TERRAIN {match.field}
                       </div>
 
-                      {/* Teams */}
                       <div
                         style={{
                           display: "flex",
@@ -120,14 +112,7 @@ export default async function ProgrammePage() {
                           marginTop: "0.5rem",
                         }}
                       >
-                        <span
-                          style={{
-                            fontWeight: 700,
-                            fontFamily: "Georgia, serif",
-                            color: "white",
-                            flex: 1,
-                          }}
-                        >
+                        <span style={{ fontWeight: 700, fontFamily: "Georgia, serif", color: "white", flex: 1 }}>
                           {match.team1.name}
                         </span>
 
@@ -151,20 +136,11 @@ export default async function ProgrammePage() {
                           <span style={{ color: "#555", fontWeight: 700, padding: "0 0.5rem" }}>vs</span>
                         )}
 
-                        <span
-                          style={{
-                            fontWeight: 700,
-                            fontFamily: "Georgia, serif",
-                            color: "white",
-                            flex: 1,
-                            textAlign: "right",
-                          }}
-                        >
+                        <span style={{ fontWeight: 700, fontFamily: "Georgia, serif", color: "white", flex: 1, textAlign: "right" }}>
                           {match.team2.name}
                         </span>
                       </div>
 
-                      {/* Referee */}
                       {match.refTeam && (
                         <div
                           style={{
