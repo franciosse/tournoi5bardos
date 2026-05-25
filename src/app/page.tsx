@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { prisma } from "@/lib/prisma";
 
 async function getStats() {
@@ -48,8 +49,15 @@ export default async function HomePage() {
             position: "relative",
           }}
         >
-          <div style={{ marginBottom: "1rem" }}>
-            <span style={{ color: "#e8520a", fontSize: "2rem" }}>✦ ✦ ✦</span>
+          <div style={{ marginBottom: "1.5rem", display: "flex", justifyContent: "center" }}>
+            <Image
+              src="/logo.jpg"
+              alt="US Bardos les 3 Vallées"
+              width={120}
+              height={120}
+              style={{ borderRadius: 12, boxShadow: "0 0 40px rgba(232,82,10,0.4)" }}
+              priority
+            />
           </div>
 
           <h1
@@ -60,7 +68,7 @@ export default async function HomePage() {
               letterSpacing: "0.05em",
               textTransform: "uppercase",
               marginBottom: "0.5rem",
-              fontFamily: "Georgia, serif",
+              fontFamily: "var(--font-display)",
             }}
           >
             Tournoi Rugby à 5
@@ -73,7 +81,7 @@ export default async function HomePage() {
               letterSpacing: "0.08em",
               textTransform: "uppercase",
               marginBottom: "1.5rem",
-              fontFamily: "Georgia, serif",
+              fontFamily: "var(--font-display)",
             }}
           >
             Fêtes de Bardos — Bardozeko Festak
@@ -125,7 +133,7 @@ export default async function HomePage() {
                   fontWeight: 700,
                   fontSize: "1.1rem",
                   marginBottom: "0.5rem",
-                  fontFamily: "Georgia, serif",
+                  fontFamily: "var(--font-display)",
                 }}
               >
                 {title}
@@ -166,7 +174,7 @@ export default async function HomePage() {
                   fontSize: "2.2rem",
                   fontWeight: 900,
                   color: "#e8520a",
-                  fontFamily: "Georgia, serif",
+                  fontFamily: "var(--font-display)",
                 }}
               >
                 {typeof value === "number" && max !== undefined
@@ -196,7 +204,7 @@ export default async function HomePage() {
             fontSize: "1.6rem",
             fontWeight: 700,
             margin: "0.5rem 0",
-            fontFamily: "Georgia, serif",
+            fontFamily: "var(--font-display)",
           }}
         >
           Prêt à participer ?

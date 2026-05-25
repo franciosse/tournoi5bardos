@@ -43,7 +43,7 @@ export default function PlanningGenerator({
 
   return (
     <div className="card">
-      <h2 style={{ color: "#e8520a", fontFamily: "Georgia, serif", fontWeight: 700, marginBottom: "1rem" }}>
+      <h2 style={{ color: "#e8520a", fontFamily: "var(--font-display)", fontWeight: 700, marginBottom: "1rem" }}>
         Générer le planning
       </h2>
 

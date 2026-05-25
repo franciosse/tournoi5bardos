@@ -70,7 +70,7 @@ export default function InscriptionPage() {
     return (
       <div style={{ maxWidth: 600, margin: "4rem auto", padding: "0 1.5rem", textAlign: "center" }}>
         <div style={{ fontSize: "4rem", marginBottom: "1rem" }}>🏉</div>
-        <h1 style={{ color: "#e8520a", fontFamily: "Georgia, serif", fontSize: "2rem", marginBottom: "0.5rem" }}>
+        <h1 style={{ color: "#e8520a", fontFamily: "var(--font-display)", fontSize: "2rem", marginBottom: "0.5rem" }}>
           Inscription envoyée !
         </h1>
         <div className="basque-stripe" style={{ width: 120, margin: "1rem auto" }} />
@@ -93,7 +93,7 @@ export default function InscriptionPage() {
   return (
     <div style={{ maxWidth: 720, margin: "0 auto", padding: "2rem 1.5rem" }}>
       <div style={{ marginBottom: "2rem" }}>
-        <h1 style={{ color: "#e8520a", fontFamily: "Georgia, serif", fontSize: "2rem", fontWeight: 900, textTransform: "uppercase" }}>
+        <h1 style={{ color: "#e8520a", fontFamily: "var(--font-display)", fontSize: "2rem", fontWeight: 900, textTransform: "uppercase" }}>
           ✦ Inscription
         </h1>
         <div className="basque-stripe" style={{ width: 80, marginTop: 8 }} />
@@ -111,7 +111,7 @@ export default function InscriptionPage() {
       <form onSubmit={handleSubmit}>
         {/* Team info */}
         <div className="card" style={{ marginBottom: "1.5rem" }}>
-          <h2 style={{ color: "#e8520a", fontFamily: "Georgia, serif", fontWeight: 700, marginBottom: "1rem" }}>
+          <h2 style={{ color: "#e8520a", fontFamily: "var(--font-display)", fontWeight: 700, marginBottom: "1rem" }}>
             Informations de l&apos;équipe
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -172,7 +172,7 @@ export default function InscriptionPage() {
         {/* Players */}
         <div className="card" style={{ marginBottom: "1.5rem" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem" }}>
-            <h2 style={{ color: "#e8520a", fontFamily: "Georgia, serif", fontWeight: 700 }}>
+            <h2 style={{ color: "#e8520a", fontFamily: "var(--font-display)", fontWeight: 700 }}>
               Joueurs ({players.length}/10)
             </h2>
             {players.length < 10 && (

@@ -49,7 +49,7 @@ export default function ScoreForm({
           padding: "0.25rem 0.4rem",
           textAlign: "center",
           fontWeight: 700,
-          fontFamily: "Georgia, serif",
+          fontFamily: "var(--font-display)",
         }}
         placeholder="0"
       />
@@ -69,7 +69,7 @@ export default function ScoreForm({
           padding: "0.25rem 0.4rem",
           textAlign: "center",
           fontWeight: 700,
-          fontFamily: "Georgia, serif",
+          fontFamily: "var(--font-display)",
         }}
         placeholder="0"
       />

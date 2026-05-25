@@ -24,7 +24,7 @@ export default async function AdminEquipesPage() {
         <Link href="/admin" style={{ color: "#666", textDecoration: "none", fontSize: "0.9rem" }}>
           ← Retour admin
         </Link>
-        <h1 style={{ color: "#e8520a", fontFamily: "Georgia, serif", fontSize: "2rem", fontWeight: 900, textTransform: "uppercase", margin: "0.5rem 0 0" }}>
+        <h1 style={{ color: "#e8520a", fontFamily: "var(--font-display)", fontSize: "2rem", fontWeight: 900, textTransform: "uppercase", margin: "0.5rem 0 0" }}>
           ✦ Gestion des équipes
         </h1>
         <div className="basque-stripe" style={{ width: 80, marginTop: 8 }} />
@@ -41,7 +41,7 @@ export default async function AdminEquipesPage() {
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: "1rem" }}>
                 <div style={{ flex: 1 }}>
                   <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "0.4rem", flexWrap: "wrap" }}>
-                    <h2 style={{ color: "white", fontFamily: "Georgia, serif", fontWeight: 700, margin: 0 }}>
+                    <h2 style={{ color: "white", fontFamily: "var(--font-display)", fontWeight: 700, margin: 0 }}>
                       {team.name}
                     </h2>
                     <span className={`badge-${team.status}`}>

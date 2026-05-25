@@ -1,6 +1,20 @@
 import type { Metadata } from "next";
+import { Bebas_Neue, Nunito } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/Nav";
+
+const bebasNeue = Bebas_Neue({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-display",
+  display: "swap",
+});
+
+const nunito = Nunito({
+  subsets: ["latin"],
+  variable: "--font-body",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Tournoi Rugby à 5 — Fêtes de Bardos",
@@ -14,7 +28,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr" className="h-full">
+    <html lang="fr" className={`h-full ${bebasNeue.variable} ${nunito.variable}`}>
       <body className="min-h-full flex flex-col" style={{ backgroundColor: "#111" }}>
         <Nav />
         <main className="flex-1">{children}</main>

@@ -23,7 +23,7 @@ export default async function AdminPage() {
     <div style={{ maxWidth: 900, margin: "0 auto", padding: "2rem 1.5rem" }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "2rem", flexWrap: "wrap", gap: "1rem" }}>
         <div>
-          <h1 style={{ color: "#e8520a", fontFamily: "Georgia, serif", fontSize: "2rem", fontWeight: 900, textTransform: "uppercase", margin: 0 }}>
+          <h1 style={{ color: "#e8520a", fontFamily: "var(--font-display)", fontSize: "2rem", fontWeight: 900, textTransform: "uppercase", margin: 0 }}>
             ✦ Administration
           </h1>
           <div className="basque-stripe" style={{ width: 80, marginTop: 8 }} />
@@ -40,7 +40,7 @@ export default async function AdminPage() {
           { value: `${stats.played}/${stats.matchCount}`, label: "Matchs joués", color: "#aaa" },
         ].map(({ value, label, color }) => (
           <div key={label} className="card" style={{ textAlign: "center" }}>
-            <div style={{ fontSize: "1.8rem", fontWeight: 900, color, fontFamily: "Georgia, serif" }}>{value}</div>
+            <div style={{ fontSize: "1.8rem", fontWeight: 900, color, fontFamily: "var(--font-display)" }}>{value}</div>
             <div style={{ color: "#666", fontSize: "0.8rem", marginTop: 4 }}>{label}</div>
           </div>
         ))}
@@ -75,7 +75,7 @@ export default async function AdminPage() {
             <div className="card card-hover" style={{ cursor: "pointer", height: "100%" }}>
               <div style={{ fontSize: "2rem", marginBottom: "0.5rem" }}>{icon}</div>
               <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.4rem" }}>
-                <h2 style={{ color: "#e8520a", fontFamily: "Georgia, serif", fontWeight: 700, margin: 0 }}>{title}</h2>
+                <h2 style={{ color: "#e8520a", fontFamily: "var(--font-display)", fontWeight: 700, margin: 0 }}>{title}</h2>
                 {badge && <span className="badge-pending">{badge}</span>}
               </div>
               <p style={{ color: "#888", fontSize: "0.9rem", lineHeight: 1.5, margin: 0 }}>{desc}</p>

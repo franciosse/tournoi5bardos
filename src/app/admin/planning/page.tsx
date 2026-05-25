@@ -48,7 +48,7 @@ export default async function AdminPlanningPage() {
         <Link href="/admin" style={{ color: "#666", textDecoration: "none", fontSize: "0.9rem" }}>
           ← Retour admin
         </Link>
-        <h1 style={{ color: "#e8520a", fontFamily: "Georgia, serif", fontSize: "2rem", fontWeight: 900, textTransform: "uppercase", margin: "0.5rem 0 0" }}>
+        <h1 style={{ color: "#e8520a", fontFamily: "var(--font-display)", fontSize: "2rem", fontWeight: 900, textTransform: "uppercase", margin: "0.5rem 0 0" }}>
           ✦ Planning
         </h1>
         <div className="basque-stripe" style={{ width: 80, marginTop: 8 }} />
@@ -58,14 +58,14 @@ export default async function AdminPlanningPage() {
 
       {slots.length > 0 && (
         <div style={{ marginTop: "2rem" }}>
-          <h2 style={{ color: "#e8520a", fontFamily: "Georgia, serif", fontWeight: 700, marginBottom: "1rem" }}>
+          <h2 style={{ color: "#e8520a", fontFamily: "var(--font-display)", fontWeight: 700, marginBottom: "1rem" }}>
             Planning actuel — {matches.length} matchs
           </h2>
           <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
             {slots.map((time) => (
               <div key={time}>
                 <div style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "0.6rem" }}>
-                  <span style={{ background: "#e8520a", color: "white", fontWeight: 700, fontFamily: "Georgia, serif", padding: "0.2rem 0.7rem", borderRadius: 4, minWidth: 60, textAlign: "center" }}>
+                  <span style={{ background: "#e8520a", color: "white", fontWeight: 700, fontFamily: "var(--font-display)", padding: "0.2rem 0.7rem", borderRadius: 4, minWidth: 60, textAlign: "center" }}>
                     {time}
                   </span>
                   <div style={{ flex: 1, height: 1, background: "#333" }} />
@@ -77,9 +77,9 @@ export default async function AdminPlanningPage() {
                         TERRAIN {m.field}
                       </div>
                       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "0.5rem" }}>
-                        <span style={{ fontWeight: 700, fontFamily: "Georgia, serif", color: "white", flex: 1 }}>{m.team1.name}</span>
+                        <span style={{ fontWeight: 700, fontFamily: "var(--font-display)", color: "white", flex: 1 }}>{m.team1.name}</span>
                         <span style={{ color: "#555" }}>vs</span>
-                        <span style={{ fontWeight: 700, fontFamily: "Georgia, serif", color: "white", flex: 1, textAlign: "right" }}>{m.team2.name}</span>
+                        <span style={{ fontWeight: 700, fontFamily: "var(--font-display)", color: "white", flex: 1, textAlign: "right" }}>{m.team2.name}</span>
                       </div>
                       {m.refTeam && (
                         <div style={{ marginTop: "0.4rem", fontSize: "0.75rem", color: "#555" }}>

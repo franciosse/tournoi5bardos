@@ -36,7 +36,7 @@ export default async function ProgrammePage() {
   return (
     <div style={{ maxWidth: 900, margin: "0 auto", padding: "2rem 1.5rem" }}>
       <div style={{ marginBottom: "2rem" }}>
-        <h1 style={{ color: "#e8520a", fontFamily: "Georgia, serif", fontSize: "2rem", fontWeight: 900, textTransform: "uppercase" }}>
+        <h1 style={{ color: "#e8520a", fontFamily: "var(--font-display)", fontSize: "2rem", fontWeight: 900, textTransform: "uppercase" }}>
           ✦ Programme
         </h1>
         <div className="basque-stripe" style={{ width: 80, marginTop: 8 }} />
@@ -63,7 +63,7 @@ export default async function ProgrammePage() {
                     background: "#e8520a",
                     color: "white",
                     fontWeight: 700,
-                    fontFamily: "Georgia, serif",
+                    fontFamily: "var(--font-display)",
                     padding: "0.25rem 0.75rem",
                     borderRadius: 4,
                     fontSize: "1.05rem",
@@ -112,7 +112,7 @@ export default async function ProgrammePage() {
                           marginTop: "0.5rem",
                         }}
                       >
-                        <span style={{ fontWeight: 700, fontFamily: "Georgia, serif", color: "white", flex: 1 }}>
+                        <span style={{ fontWeight: 700, fontFamily: "var(--font-display)", color: "white", flex: 1 }}>
                           {match.team1.name}
                         </span>
 
@@ -124,7 +124,7 @@ export default async function ProgrammePage() {
                               borderRadius: 4,
                               padding: "0.2rem 0.75rem",
                               fontWeight: 900,
-                              fontFamily: "Georgia, serif",
+                              fontFamily: "var(--font-display)",
                               color: "#e8520a",
                               fontSize: "1.1rem",
                               whiteSpace: "nowrap",
@@ -136,7 +136,7 @@ export default async function ProgrammePage() {
                           <span style={{ color: "#555", fontWeight: 700, padding: "0 0.5rem" }}>vs</span>
                         )}
 
-                        <span style={{ fontWeight: 700, fontFamily: "Georgia, serif", color: "white", flex: 1, textAlign: "right" }}>
+                        <span style={{ fontWeight: 700, fontFamily: "var(--font-display)", color: "white", flex: 1, textAlign: "right" }}>
                           {match.team2.name}
                         </span>
                       </div>

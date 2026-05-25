@@ -49,7 +49,7 @@ export default function AdminLoginPage() {
           <h1
             style={{
               color: "#e8520a",
-              fontFamily: "Georgia, serif",
+              fontFamily: "var(--font-display)",
               fontSize: "1.5rem",
               fontWeight: 700,
               margin: "0.5rem 0 0",

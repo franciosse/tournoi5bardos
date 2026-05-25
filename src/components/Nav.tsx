@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 
@@ -23,17 +24,22 @@ export default function Nav() {
         className="flex items-center justify-between h-16"
       >
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 no-underline">
-          <span style={{ color: "#e8520a", fontSize: "1.5rem", fontWeight: 900 }}>
-            ✦
-          </span>
+        <Link href="/" className="flex items-center gap-3 no-underline">
+          <Image
+            src="/logo.jpg"
+            alt="US Bardos les 3 Vallées"
+            width={44}
+            height={44}
+            style={{ borderRadius: 6, objectFit: "cover" }}
+            priority
+          />
           <span
             style={{
               color: "white",
               fontWeight: 800,
               fontSize: "1.1rem",
               letterSpacing: "0.04em",
-              fontFamily: "Georgia, serif",
+              fontFamily: "var(--font-display)",
             }}
           >
             BARDOS RUGBY 5
@@ -50,7 +56,7 @@ export default function Nav() {
                 color: pathname === href ? "#e8520a" : "#ccc",
                 fontWeight: pathname === href ? 700 : 400,
                 textDecoration: "none",
-                fontFamily: "Georgia, serif",
+                fontFamily: "var(--font-display)",
                 borderBottom:
                   pathname === href ? "2px solid #e8520a" : "2px solid transparent",
                 paddingBottom: "2px",
@@ -90,7 +96,7 @@ export default function Nav() {
                 color: pathname === href ? "#e8520a" : "#ccc",
                 fontWeight: pathname === href ? 700 : 400,
                 textDecoration: "none",
-                fontFamily: "Georgia, serif",
+                fontFamily: "var(--font-display)",
                 borderLeft:
                   pathname === href ? "3px solid #e8520a" : "3px solid transparent",
               }}

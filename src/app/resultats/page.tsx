@@ -84,7 +84,7 @@ export default async function ResultatsPage() {
   return (
     <div style={{ maxWidth: 900, margin: "0 auto", padding: "2rem 1.5rem" }}>
       <div style={{ marginBottom: "2rem" }}>
-        <h1 style={{ color: "#e8520a", fontFamily: "Georgia, serif", fontSize: "2rem", fontWeight: 900, textTransform: "uppercase" }}>
+        <h1 style={{ color: "#e8520a", fontFamily: "var(--font-display)", fontSize: "2rem", fontWeight: 900, textTransform: "uppercase" }}>
           ✦ Résultats & Classement
         </h1>
         <div className="basque-stripe" style={{ width: 80, marginTop: 8 }} />
@@ -99,7 +99,7 @@ export default async function ResultatsPage() {
         <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
           <div className="card" style={{ padding: 0, overflow: "hidden" }}>
             <div style={{ padding: "1rem 1.5rem", borderBottom: "1px solid #2a2a2a" }}>
-              <h2 style={{ color: "#e8520a", fontFamily: "Georgia, serif", fontWeight: 700, margin: 0 }}>
+              <h2 style={{ color: "#e8520a", fontFamily: "var(--font-display)", fontWeight: 700, margin: 0 }}>
                 Classement général
               </h2>
             </div>
@@ -121,7 +121,7 @@ export default async function ResultatsPage() {
                   {standings.map((team: TeamStat, i: number) => (
                     <tr key={team.id} style={i < 3 ? { background: "rgba(232,82,10,0.05)" } : {}}>
                       <td style={{ textAlign: "center", fontSize: "1.1rem" }}>{MEDALS[i] ?? i + 1}</td>
-                      <td style={{ fontWeight: 700, color: "white", fontFamily: "Georgia, serif" }}>{team.name}</td>
+                      <td style={{ fontWeight: 700, color: "white", fontFamily: "var(--font-display)" }}>{team.name}</td>
                       <td style={{ textAlign: "center", color: "#aaa" }}>{team.played}</td>
                       <td style={{ textAlign: "center", color: "#4caf50" }}>{team.won}</td>
                       <td style={{ textAlign: "center", color: "#aaa" }}>{team.drawn}</td>
@@ -144,7 +144,7 @@ export default async function ResultatsPage() {
 
           <div className="card" style={{ padding: 0, overflow: "hidden" }}>
             <div style={{ padding: "1rem 1.5rem", borderBottom: "1px solid #2a2a2a" }}>
-              <h2 style={{ color: "#e8520a", fontFamily: "Georgia, serif", fontWeight: 700, margin: 0 }}>
+              <h2 style={{ color: "#e8520a", fontFamily: "var(--font-display)", fontWeight: 700, margin: 0 }}>
                 Résultats des matchs
               </h2>
             </div>

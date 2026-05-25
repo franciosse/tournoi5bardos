@@ -31,7 +31,7 @@ export default async function AdminResultatsPage() {
         <Link href="/admin" style={{ color: "#666", textDecoration: "none", fontSize: "0.9rem" }}>
           ← Retour admin
         </Link>
-        <h1 style={{ color: "#e8520a", fontFamily: "Georgia, serif", fontSize: "2rem", fontWeight: 900, textTransform: "uppercase", margin: "0.5rem 0 0" }}>
+        <h1 style={{ color: "#e8520a", fontFamily: "var(--font-display)", fontSize: "2rem", fontWeight: 900, textTransform: "uppercase", margin: "0.5rem 0 0" }}>
           ✦ Saisie des résultats
         </h1>
         <div className="basque-stripe" style={{ width: 80, marginTop: 8 }} />
@@ -48,7 +48,7 @@ export default async function AdminResultatsPage() {
         <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
           {pending.length > 0 && (
             <div>
-              <h2 style={{ color: "#e8520a", fontFamily: "Georgia, serif", fontWeight: 700, marginBottom: "1rem" }}>
+              <h2 style={{ color: "#e8520a", fontFamily: "var(--font-display)", fontWeight: 700, marginBottom: "1rem" }}>
                 Matchs à saisir ({pending.length})
               </h2>
               <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
@@ -57,12 +57,12 @@ export default async function AdminResultatsPage() {
                     <div style={{ display: "flex", alignItems: "center", gap: "1rem", flexWrap: "wrap" }}>
                       <div style={{ minWidth: 90 }}>
                         <div style={{ fontSize: "0.75rem", color: "#555" }}>Terrain {m.field}</div>
-                        <div style={{ fontWeight: 700, color: "#888", fontFamily: "Georgia, serif" }}>{formatTime(m.startTime)}</div>
+                        <div style={{ fontWeight: 700, color: "#888", fontFamily: "var(--font-display)" }}>{formatTime(m.startTime)}</div>
                       </div>
                       <div style={{ flex: 1, display: "flex", alignItems: "center", gap: "0.75rem", flexWrap: "wrap" }}>
-                        <span style={{ fontWeight: 700, color: "white", fontFamily: "Georgia, serif", flex: 1 }}>{m.team1.name}</span>
+                        <span style={{ fontWeight: 700, color: "white", fontFamily: "var(--font-display)", flex: 1 }}>{m.team1.name}</span>
                         <ScoreForm matchId={m.id} score1={m.score1} score2={m.score2} />
-                        <span style={{ fontWeight: 700, color: "white", fontFamily: "Georgia, serif", flex: 1, textAlign: "right" }}>{m.team2.name}</span>
+                        <span style={{ fontWeight: 700, color: "white", fontFamily: "var(--font-display)", flex: 1, textAlign: "right" }}>{m.team2.name}</span>
                       </div>
                     </div>
                   </div>
@@ -73,7 +73,7 @@ export default async function AdminResultatsPage() {
 
           {played.length > 0 && (
             <div>
-              <h2 style={{ color: "#4caf50", fontFamily: "Georgia, serif", fontWeight: 700, marginBottom: "1rem" }}>
+              <h2 style={{ color: "#4caf50", fontFamily: "var(--font-display)", fontWeight: 700, marginBottom: "1rem" }}>
                 Matchs saisis ({played.length})
               </h2>
               <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
@@ -82,13 +82,13 @@ export default async function AdminResultatsPage() {
                     <div style={{ display: "flex", alignItems: "center", gap: "1rem", flexWrap: "wrap" }}>
                       <div style={{ minWidth: 90 }}>
                         <div style={{ fontSize: "0.75rem", color: "#555" }}>Terrain {m.field}</div>
-                        <div style={{ fontWeight: 700, color: "#888", fontFamily: "Georgia, serif" }}>{formatTime(m.startTime)}</div>
+                        <div style={{ fontWeight: 700, color: "#888", fontFamily: "var(--font-display)" }}>{formatTime(m.startTime)}</div>
                       </div>
-                      <span style={{ fontWeight: 700, color: "white", fontFamily: "Georgia, serif", flex: 1 }}>{m.team1.name}</span>
+                      <span style={{ fontWeight: 700, color: "white", fontFamily: "var(--font-display)", flex: 1 }}>{m.team1.name}</span>
                       <span style={{ background: "#1a1a1a", border: "1px solid #e8520a", padding: "0.15rem 0.75rem", borderRadius: 4, fontWeight: 900, color: "#e8520a", whiteSpace: "nowrap" }}>
                         {m.score1} – {m.score2}
                       </span>
-                      <span style={{ fontWeight: 700, color: "white", fontFamily: "Georgia, serif", flex: 1, textAlign: "right" }}>{m.team2.name}</span>
+                      <span style={{ fontWeight: 700, color: "white", fontFamily: "var(--font-display)", flex: 1, textAlign: "right" }}>{m.team2.name}</span>
                       <ScoreForm matchId={m.id} score1={m.score1} score2={m.score2} />
                     </div>
                   </div>
