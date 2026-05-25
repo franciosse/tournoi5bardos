@@ -47,6 +47,12 @@ body {
   border-radius: 8px;
   padding: 1.5rem;
 }
+.card-hover {
+  transition: border-color 0.2s;
+}
+.card-hover:hover {
+  border-color: #e8520a;
+}
 
 /* Orange button */
 .btn-primary {

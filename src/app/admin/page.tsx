@@ -72,16 +72,7 @@ export default async function AdminPage() {
           },
         ].map(({ href, icon, title, desc, badge }) => (
           <Link key={href} href={href} style={{ textDecoration: "none" }}>
-            <div
-              className="card"
-              style={{
-                cursor: "pointer",
-                transition: "border-color 0.2s",
-                height: "100%",
-              }}
-              onMouseEnter={(e) => (e.currentTarget.style.borderColor = "#e8520a")}
-              onMouseLeave={(e) => (e.currentTarget.style.borderColor = "#333")}
-            >
+            <div className="card card-hover" style={{ cursor: "pointer", height: "100%" }}>
               <div style={{ fontSize: "2rem", marginBottom: "0.5rem" }}>{icon}</div>
               <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.4rem" }}>
                 <h2 style={{ color: "#e8520a", fontFamily: "Georgia, serif", fontWeight: 700, margin: 0 }}>{title}</h2>
